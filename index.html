@@ -12,6 +12,47 @@
     <title>Memory Cards</title>
   </head>
   <body>
-    <script src="script.js"></script>
+    <section class="container">
+      <div class="navigator">
+        <i class="fas fa-trash-alt" id="clear-card-btn" title="clear all"></i>
+        <h1 class="navigator__title">Memory Cards</h1>
+        <span class="add-btn" id="add-card-btn">+</span>
+      </div>
+
+      <div class="cards">
+        <div class="card active">
+          <div class="card__inner">
+            <!-- front card -->
+            <div class="card__inner--front">
+              <h3 class="card__question card-title">Hy</h3>
+            </div>
+            <!-- back card -->
+            <div class="card__inner--back">
+              <h3 class="card__answer card-title">سلام</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__inner">
+            <!-- front card -->
+            <div class="card__inner--front">
+              <h3 class="card__question card-title">Hy</h3>
+            </div>
+            <!-- back card -->
+            <div class="card__inner--back">
+              <h3 class="card__answer card-title">سلام</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <i id="prev-btn" class="fas fa-arrow-left"></i>
+        <p id="count-card">0/0</p>
+        <i id="prev-btn" class="fas fa-arrow-right"></i>
+      </div>
+    </section>
   </body>
+  <script src="script.js"></script>
 </html>
