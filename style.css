@@ -119,3 +119,22 @@ body {
 .card.right {
   transform: translateX(50%) rotateY(-10deg);
 }
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.controls * {
+  margin: 0 1.5rem;
+}
+
+.controls p {
+  font-size: 1.7rem;
+}
+
+.controls i {
+  font-size: 1.2rem;
+}
