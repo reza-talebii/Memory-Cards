@@ -18,6 +18,11 @@ body {
   height: 100vh;
 }
 
+.container.hide {
+  opacity: 0;
+  z-index: -2;
+}
+
 .navigator {
   display: flex;
   justify-content: space-around;
@@ -108,6 +113,17 @@ body {
   transform: rotateX(0);
 }
 
+.card__inner--front::after {
+  content: "\f021 Flip";
+  font-family: "Font Awesome 5 Free", Lato, sans-serif;
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
 .card__inner--back {
   transform: rotateX(180deg);
 }
@@ -137,4 +153,44 @@ body {
 
 .controls i {
   font-size: 1.2rem;
+}
+
+.add-container {
+  opacity: 0;
+  z-index: -1;
+  background-color: #f0f0f0;
+  border-top: 2px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+.add-container.show {
+  opacity: 1;
+  z-index: 2;
+}
+
+.add-container h3 {
+  margin: 10px 0;
+}
+
+.form-group label {
+  display: block;
+  margin: 20px 0 10px;
+}
+
+.form-group textarea {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 12px;
+  min-width: 500px;
+  max-width: 100%;
 }
