@@ -1,7 +1,8 @@
-const addBtn = document.querySelector("#add-card-btn");
+const directAddContainer = document.querySelector("#direct-btn");
+const addCardBtn = document.querySelector("#add-card");
 const BtnCloseContainer = document.querySelector("#hide");
 
-const addCard = () => {
+const directContainer = () => {
   toggleClassContainer(".container", ".add-container");
 };
 
@@ -11,9 +12,23 @@ const toggleClassContainer = (selector1, selector2) => {
   cardContainer.classList.toggle("hide");
   addContainer.classList.toggle("show");
 };
+
 const closeAddContainer = () => {
   toggleClassContainer(".container", ".add-container");
 };
+
+const addCard = () => {
+  console.log(getInputValue("#question", "#answer"));
+};
+
+const getInputValue = (...inputs) => {
+  const values = [];
+  inputs.map((input) => {
+    values.push(document.querySelector(`${input}`).value);
+  });
+  return values;
+};
+
 const showCardsDOM = () => {};
 const clearAllCard = () => {};
 const prevCard = () => {};
@@ -21,5 +36,6 @@ const nextCard = () => {};
 const updateCurrent = () => {};
 const turnCard = () => {};
 
-addBtn.addEventListener("click", addCard);
+directAddContainer.addEventListener("click", directContainer);
 BtnCloseContainer.addEventListener("click", closeAddContainer);
+addCardBtn.addEventListener("click", addCard);
