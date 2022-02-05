@@ -1,10 +1,12 @@
 let cards = JSON.parse(localStorage.getItem("card")) || [];
-let currentCardIndex = 1;
+let currentCardIndex = 0;
 //DOM VARIABLE
 const directAddContainer = document.querySelector("#direct-btn");
 const addCardBtn = document.querySelector("#add-card");
 const BtnCloseContainer = document.querySelector("#hide");
 const clearBtn = document.querySelector("#clear-card-btn");
+const prevBtn = document.querySelector("#prev-btn");
+const nextBtn = document.querySelector("#next-btn");
 const cardsContainer = document.querySelector(".cards");
 
 const directContainer = () => {
@@ -81,16 +83,27 @@ const clearAllCard = () => {
 
 const updateCurrent = () => {
   const countCardContainer = document.querySelector("#count-card");
-  countCardContainer.innerHTML = `${currentCardIndex}/${cards.length}`;
+  countCardContainer.innerHTML = `${currentCardIndex + 1}/${cards.length}`;
 };
 
-// const nextCard = () => {};
-// const prevCard = () => {};
+const nextCard = () => {
+  currentCardIndex =
+    currentCardIndex == cards.length - 1 ? 0 : ++currentCardIndex;
+  showDOM();
+};
+
+const prevCard = () => {
+  currentCardIndex =
+    currentCardIndex == 0 ? cards.length - 1 : --currentCardIndex;
+  showDOM();
+};
 
 const turnCard = (e) => e.currentTarget.classList.toggle("show-answer");
 
 directAddContainer.addEventListener("click", directContainer);
 BtnCloseContainer.addEventListener("click", closeAddContainer);
 addCardBtn.addEventListener("click", addCard);
-clearBtn.addEventListener("click", (e) => clearAllCard);
+clearBtn.addEventListener("click", clearAllCard);
+prevBtn.addEventListener("click", prevCard);
+nextBtn.addEventListener("click", nextCard);
 showDOM();
