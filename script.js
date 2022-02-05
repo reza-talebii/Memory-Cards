@@ -1,5 +1,5 @@
 let cards = JSON.parse(localStorage.getItem("card")) || [];
-let currentCardIndex = 0;
+let currentCardIndex = 1;
 //DOM VARIABLE
 const directAddContainer = document.querySelector("#direct-btn");
 const addCardBtn = document.querySelector("#add-card");
@@ -37,7 +37,6 @@ const saveDate = (newCard) => {
 };
 
 const addCard = () => {
-  if (currentCardIndex == 0) currentCardIndex++;
   toggleClassContainer(".container", ".add-container");
   const [question, answer] = getInputValue("#question", "#answer");
   const newCard = { question, answer };
@@ -55,7 +54,7 @@ const creatCardElement = (item, index) => {
   const cardItem = document.createElement("div");
   //ADD CLASSES
   cardItem.classList.add("card");
-  if (index == 0) cardItem.classList.add("active");
+  if (index == currentCardIndex) cardItem.classList.add("active");
   //CARD INNER HTML
   cardItem.innerHTML = `
   <div class="card__inner">
@@ -69,6 +68,8 @@ const creatCardElement = (item, index) => {
   `;
   //append
   cardsContainer.append(cardItem);
+  //click show answer
+  cardItem.addEventListener("click", turnCard);
 };
 
 const clearAllCard = () => {
@@ -82,12 +83,14 @@ const updateCurrent = () => {
   const countCardContainer = document.querySelector("#count-card");
   countCardContainer.innerHTML = `${currentCardIndex}/${cards.length}`;
 };
-// const prevCard = () => {};
+
 // const nextCard = () => {};
-// const turnCard = () => {};
+// const prevCard = () => {};
+
+const turnCard = (e) => e.currentTarget.classList.toggle("show-answer");
 
 directAddContainer.addEventListener("click", directContainer);
 BtnCloseContainer.addEventListener("click", closeAddContainer);
 addCardBtn.addEventListener("click", addCard);
-clearBtn.addEventListener("click", clearAllCard);
+clearBtn.addEventListener("click", (e) => clearAllCard);
 showDOM();
