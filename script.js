@@ -1,5 +1,5 @@
 let cards = JSON.parse(localStorage.getItem("card")) || [];
-let currentCardIndex = 0;
+let currentCardIndex = JSON.parse(localStorage.getItem("cardCurrent")) || 0;
 //DOM VARIABLE
 const directAddContainer = document.querySelector("#direct-btn");
 const addCardBtn = document.querySelector("#add-card");
@@ -27,8 +27,11 @@ const closeAddContainer = () => {
 const getInputValue = (...inputs) => {
   const values = [];
   inputs.map((input) => {
-    values.push(document.querySelector(`${input}`).value);
+    const inp = document.querySelector(`${input}`);
+    values.push(inp.value);
+    inp.value = "";
   });
+
   return values;
 };
 
@@ -83,19 +86,33 @@ const clearAllCard = () => {
 
 const updateCurrent = () => {
   const countCardContainer = document.querySelector("#count-card");
-  countCardContainer.innerHTML = `${currentCardIndex + 1}/${cards.length}`;
+  countCardContainer.innerHTML =
+    cards.length != 0 ? `${currentCardIndex + 1}/${cards.length}` : "0/0";
+  localStorage.setItem("cardCurrent", currentCardIndex);
 };
 
 const nextCard = () => {
-  currentCardIndex =
-    currentCardIndex == cards.length - 1 ? 0 : ++currentCardIndex;
-  showDOM();
+  const cardsItem = document.querySelectorAll(".card");
+  cardsItem[currentCardIndex].className = "card left";
+
+  currentCardIndex++;
+
+  if (currentCardIndex > cards.length - 1) currentCardIndex = cards.length - 1;
+
+  cardsItem[currentCardIndex].className = "card active";
+  updateCurrent();
 };
 
 const prevCard = () => {
-  currentCardIndex =
-    currentCardIndex == 0 ? cards.length - 1 : --currentCardIndex;
-  showDOM();
+  const cardsItem = document.querySelectorAll(".card");
+  cardsItem[currentCardIndex].className = "card right";
+
+  currentCardIndex--;
+
+  if (currentCardIndex < 0) currentCardIndex = 0;
+
+  cardsItem[currentCardIndex].className = "card active";
+  updateCurrent();
 };
 
 const turnCard = (e) => e.currentTarget.classList.toggle("show-answer");
