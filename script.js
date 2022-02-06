@@ -1,12 +1,14 @@
 let cards = JSON.parse(localStorage.getItem("card")) || [];
 let currentCardIndex = JSON.parse(localStorage.getItem("cardCurrent")) || 0;
-//DOM VARIABLE
+//button VARIABLE
 const directAddContainer = document.querySelector("#direct-btn");
 const addCardBtn = document.querySelector("#add-card");
 const BtnCloseContainer = document.querySelector("#hide");
 const clearBtn = document.querySelector("#clear-card-btn");
 const prevBtn = document.querySelector("#prev-btn");
 const nextBtn = document.querySelector("#next-btn");
+const countInput = document.querySelector("#count-input");
+//card variable
 const cardsContainer = document.querySelector(".cards");
 
 const directContainer = () => {
@@ -86,16 +88,28 @@ const clearAllCard = () => {
 
 const updateCurrent = () => {
   const countCardContainer = document.querySelector("#count-card");
-  const countInput = document.querySelector("#count-input");
 
-  countInput.value = cards.length == 0 ? 0 : `${currentCardIndex + 1}`;
+  countInput.value = cards.length == 0 ? "" : `${currentCardIndex + 1}`;
   countCardContainer.innerHTML = `/${cards.length}`;
 
   localStorage.setItem("cardCurrent", currentCardIndex);
 };
 
+const changeCountCard = (e) => {
+  const inputValue = e.target.value;
+  if (cards.length + 1 <= inputValue || inputValue == 0) {
+    countInput.classList.add("error");
+    return;
+  }
+
+  resetClassCard();
+  const cardsItem = document.querySelectorAll(".card");
+  cardsItem[e.target.value - 1].classList.add("active");
+};
+
 const nextCard = () => {
   const cardsItem = document.querySelectorAll(".card");
+
   cardsItem[currentCardIndex].className = "card left";
 
   currentCardIndex++;
@@ -118,6 +132,12 @@ const prevCard = () => {
   updateCurrent();
 };
 
+const resetClassCard = () => {
+  const cardsItem = document.querySelectorAll(".card");
+  cardsItem.forEach((card) => (card.className = "card"));
+  countInput.classList.remove("error");
+};
+
 const turnCard = (e) => e.currentTarget.classList.toggle("show-answer");
 
 directAddContainer.addEventListener("click", directContainer);
@@ -126,4 +146,5 @@ addCardBtn.addEventListener("click", addCard);
 clearBtn.addEventListener("click", clearAllCard);
 prevBtn.addEventListener("click", prevCard);
 nextBtn.addEventListener("click", nextCard);
+countInput.addEventListener("change", changeCountCard);
 showDOM();

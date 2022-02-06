@@ -171,6 +171,10 @@ body {
   font-family: inherit;
 }
 
+.count-card-input.error {
+  color: red;
+}
+
 .add-container {
   opacity: 0;
   z-index: -1;
