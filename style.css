@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -151,11 +153,22 @@ body {
 
 .controls p {
   font-size: 1.7rem;
+  margin: 0;
+  margin-right: 0.8rem;
 }
 
 .controls i {
   font-size: 1.2rem;
   cursor: pointer;
+}
+.count-card-input {
+  border: none;
+  outline: none;
+  direction: rtl;
+  width: 30px;
+  margin: 0;
+  font-size: 1.55rem;
+  font-family: inherit;
 }
 
 .add-container {
