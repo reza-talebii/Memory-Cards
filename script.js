@@ -86,8 +86,11 @@ const clearAllCard = () => {
 
 const updateCurrent = () => {
   const countCardContainer = document.querySelector("#count-card");
-  countCardContainer.innerHTML =
-    cards.length != 0 ? `${currentCardIndex + 1}/${cards.length}` : "/0";
+  const countInput = document.querySelector("#count-input");
+
+  countInput.value = cards.length == 0 ? 0 : `${currentCardIndex + 1}`;
+  countCardContainer.innerHTML = `/${cards.length}`;
+
   localStorage.setItem("cardCurrent", currentCardIndex);
 };
 
