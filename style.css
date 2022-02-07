@@ -225,6 +225,15 @@ body {
   cursor: pointer;
 }
 
+.delete-icon {
+  color: #000;
+  font-size: 1.3rem;
+  z-index: 12;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
 @media only screen and (max-width: 500px) {
   .form-group textarea {
     min-width: 350px;

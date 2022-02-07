@@ -32,7 +32,7 @@ const addCard = () => {
   saveDate(newCard);
 };
 
-//update dom 
+//update dom
 const showDOM = () => {
   updateCurrent();
   //Add card element
@@ -47,6 +47,7 @@ const creatCardElement = (item, index) => {
   if (index == currentCardIndex) cardItem.classList.add("active");
   //CARD INNER HTML
   cardItem.innerHTML = `
+  <i class="far fa-trash-alt delete-icon" id="delete-item"></i>
     <div class="card__inner">
     <div class="card__inner--front">
       <h3 class="card__question card-title">${item.question}</h3>
