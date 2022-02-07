@@ -1,16 +1,3 @@
-let cards = JSON.parse(localStorage.getItem("card")) || [];
-let currentCardIndex = JSON.parse(localStorage.getItem("cardCurrent")) || 0;
-//button VARIABLE
-const directAddContainer = document.querySelector("#direct-btn");
-const addCardBtn = document.querySelector("#add-card");
-const BtnCloseContainer = document.querySelector("#hide");
-const clearBtn = document.querySelector("#clear-card-btn");
-const prevBtn = document.querySelector("#prev-btn");
-const nextBtn = document.querySelector("#next-btn");
-const countInput = document.querySelector("#count-input");
-//card variable
-const cardsContainer = document.querySelector(".cards");
-
 const directContainer = () => {
   toggleClassContainer(".container", ".add-container");
 };
@@ -64,15 +51,15 @@ const creatCardElement = (item, index) => {
   if (index == currentCardIndex) cardItem.classList.add("active");
   //CARD INNER HTML
   cardItem.innerHTML = `
-  <div class="card__inner">
-  <div class="card__inner--front">
-    <h3 class="card__question card-title">${item.question}</h3>
-  </div>
-  <div class="card__inner--back">
-    <h3 class="card__answer card-title">${item.answer}</h3>
-  </div>
-  </div>
-  `;
+    <div class="card__inner">
+    <div class="card__inner--front">
+      <h3 class="card__question card-title">${item.question}</h3>
+    </div>
+    <div class="card__inner--back">
+      <h3 class="card__answer card-title">${item.answer}</h3>
+    </div>
+    </div>
+    `;
   //append
   cardsContainer.append(cardItem);
   //click show answer
@@ -139,12 +126,3 @@ const resetClassCard = () => {
 };
 
 const turnCard = (e) => e.currentTarget.classList.toggle("show-answer");
-
-directAddContainer.addEventListener("click", directContainer);
-BtnCloseContainer.addEventListener("click", closeAddContainer);
-addCardBtn.addEventListener("click", addCard);
-clearBtn.addEventListener("click", clearAllCard);
-prevBtn.addEventListener("click", prevCard);
-nextBtn.addEventListener("click", nextCard);
-countInput.addEventListener("change", changeCountCard);
-showDOM();
