@@ -12,8 +12,8 @@ const countInput = document.querySelector("#count-input");
 const cardsContainer = document.querySelector(".cards");
 
 //EventListener
-directAddContainer.addEventListener("click", directContainer);
-BtnCloseContainer.addEventListener("click", closeAddContainer);
+directAddContainer.addEventListener("click", toggleClassContainer);
+BtnCloseContainer.addEventListener("click", toggleClassContainer);
 addCardBtn.addEventListener("click", addCard);
 clearBtn.addEventListener("click", clearAllCard);
 prevBtn.addEventListener("click", prevCard);

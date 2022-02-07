@@ -1,16 +1,9 @@
-const directContainer = () => {
-  toggleClassContainer(".container", ".add-container");
-};
-
-const toggleClassContainer = (selector1, selector2) => {
-  const cardContainer = document.querySelector(selector1);
-  const addContainer = document.querySelector(selector2);
+//hide & show add & card containers
+const toggleClassContainer = () => {
+  const cardContainer = document.querySelector(".container");
+  const addContainer = document.querySelector(".add-container");
   cardContainer.classList.toggle("hide");
   addContainer.classList.toggle("show");
-};
-
-const closeAddContainer = () => {
-  toggleClassContainer(".container", ".add-container");
 };
 
 const getInputValue = (...inputs) => {
@@ -24,19 +17,22 @@ const getInputValue = (...inputs) => {
   return values;
 };
 
+//save in localStorage & push in cars array
 const saveDate = (newCard) => {
   cards.push(newCard);
   localStorage.setItem("card", JSON.stringify(cards));
   showDOM();
 };
 
+//submit add card button
 const addCard = () => {
-  toggleClassContainer(".container", ".add-container");
+  toggleClassContainer();
   const [question, answer] = getInputValue("#question", "#answer");
   const newCard = { question, answer };
   saveDate(newCard);
 };
 
+//update dom 
 const showDOM = () => {
   updateCurrent();
   //Add card element
@@ -125,4 +121,5 @@ const resetClassCard = () => {
   countInput.classList.remove("error");
 };
 
+//show answer
 const turnCard = (e) => e.currentTarget.classList.toggle("show-answer");
