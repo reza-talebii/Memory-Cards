@@ -1,6 +1,6 @@
 //hide & show add & card containers
 const toggleClassContainer = () => {
-  const cardContainer = document.querySelector(".container");
+  const cardContainer = document.querySelector(".card-container");
   const addContainer = document.querySelector(".add-container");
   cardContainer.classList.toggle("hide");
   addContainer.classList.toggle("show");
