@@ -225,20 +225,24 @@ body {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 470px) {
-  .container {
-    margin-left: 3rem;
+@media only screen and (max-width: 500px) {
+  .form-group textarea {
+    min-width: 350px;
   }
 }
 
 @media only screen and (max-width: 350px) {
   .navigator__title {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
   #clear-card-btn {
     font-size: 1rem;
   }
   .add-btn {
     font-size: 1.5rem;
+  }
+  .form-group textarea {
+    min-width: 250px;
   }
 }
