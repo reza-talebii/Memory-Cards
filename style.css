@@ -18,6 +18,7 @@ body {
   justify-content: center;
   width: clamp(600px, 50%, 100%);
   height: 100vh;
+  overflow: hidden;
 }
 
 .container.hide {
@@ -58,6 +59,7 @@ body {
 .cards {
   height: 400px;
   position: relative;
+  margin: 0 0.5rem;
 }
 .card {
   position: absolute;
@@ -221,4 +223,22 @@ body {
 
 #add-card {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 470px) {
+  .container {
+    margin-left: 3rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .navigator__title {
+    font-size: 1.5rem;
+  }
+  #clear-card-btn {
+    font-size: 1rem;
+  }
+  .add-btn {
+    font-size: 1.5rem;
+  }
 }
