@@ -11,10 +11,16 @@ const getInputValue = (...inputs) => {
   inputs.map((input) => {
     const inp = document.querySelector(`${input}`);
     values.push(inp.value);
-    inp.value = "";
   });
 
   return values;
+};
+
+const clearValueInput = (...inputs) => {
+  inputs.map((input) => {
+    const inp = document.querySelector(`${input}`);
+    inp.value = "";
+  });
 };
 
 //save in localStorage & push in cars array
@@ -26,11 +32,21 @@ const saveDate = (newCard) => {
 
 //submit add card button
 const addCard = () => {
-  toggleClassContainer();
   const [question, answer] = getInputValue("#question", "#answer");
+  //validate inputs
+  if (isEmpty(question, answer)) {
+    alert("please fill in all forms");
+    return;
+  }
   const newCard = { question, answer };
+  isEmpty(question, answer);
   saveDate(newCard);
+  toggleClassContainer();
+  clearValueInput("#question", "#answer");
 };
+
+//validate check is empty?
+const isEmpty = (...items) => items.some((item) => item == "");
 
 //update dom
 const showDOM = () => {
