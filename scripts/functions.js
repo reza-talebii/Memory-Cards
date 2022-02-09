@@ -42,12 +42,14 @@ const showDOM = () => {
 
 const creatCardElement = (item, index) => {
   const cardItem = document.createElement("div");
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "far fa-trash-alt delete-icon";
+  deleteIcon.id = "delete-item";
   //ADD CLASSES
   cardItem.classList.add("card");
   if (index == currentCardIndex) cardItem.classList.add("active");
   //CARD INNER HTML
   cardItem.innerHTML = `
-  <i class="far fa-trash-alt delete-icon" id="delete-item"></i>
     <div class="card__inner">
     <div class="card__inner--front">
       <h3 class="card__question card-title">${item.question}</h3>
@@ -58,15 +60,27 @@ const creatCardElement = (item, index) => {
     </div>
     `;
   //append
+  cardItem.prepend(deleteIcon);
   cardsContainer.append(cardItem);
+
   //click show answer
   cardItem.addEventListener("click", turnCard);
+
+  //delete card event
+  deleteIcon.addEventListener("click", () => deleteCard(index));
 };
 
 const clearAllCard = () => {
   localStorage.clear();
   cards = [];
   currentCardIndex = 0;
+  showDOM();
+};
+
+const deleteCard = (index) => {
+  cards.splice(index, 1);
+  localStorage.setItem("card", JSON.stringify(cards));
+  prevCard();
   showDOM();
 };
 
